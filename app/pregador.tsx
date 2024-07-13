@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 
-export default function Primeiro(){
+export default function Pregador(){
     return (
         <View>
-            <Text>Primeiro Componente</Text>
+            <Text>Pregador da Noite</Text>
         </View>
     )
 }

@@ -5,13 +5,29 @@ import { Ionicons } from "@expo/vector-icons";
 export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer screenOptions={{headerShown: true}}>
+      <Drawer screenOptions={{headerShown: true}} >
         <Drawer.Screen
           name="index"
           options={{
             drawerLabel: 'Início',
             title: 'Bem Vindo(a)',
             drawerIcon: () => <Ionicons name="home-outline" size={18} color={"#3A98FF"}/>
+          }}
+          />
+        <Drawer.Screen
+          name="agenda"
+          options={{
+            drawerLabel: 'Agenda',
+            title: 'Agenda',
+            drawerIcon: () => <Ionicons name="calendar" size={18} color={"#3A98FF"}/>
+          }}
+          />
+        <Drawer.Screen
+          name="pregador"
+          options={{
+            drawerLabel: 'Pregador',
+            title: 'Pregador da Noite',
+            drawerIcon: () => <Ionicons name="mic" size={18} color={"#3A98FF"}/>
           }}
           />
       </Drawer>

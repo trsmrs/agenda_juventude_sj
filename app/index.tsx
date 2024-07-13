@@ -1,5 +1,7 @@
+import styles from "@/constants/styles";
+import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 
 export default function Index() {
   const [verse, setVerse] = useState('')
@@ -14,24 +16,15 @@ export default function Index() {
     generateVerse();
   }, [])
 
-
-
   return (
-    <View
-        style={styles.centralizado}>
-      <Text style={{fontWeight: 'bold'}}>Versículo Diário</Text>
-      {verse && <Text style={{fontWeight:"bold", color: 'black', display: 'flex', alignContent: 'center', textAlign: 'center'}}>{verse}</Text>}
+    <View style={[styles.centralizado, {gap: 10}]}>
+      <View style={{alignItems: 'center'}}>
+        <Ionicons name="book" size={100} color={'#272727'}/>
+        <Text style={{ fontWeight: 'bold' }}>Versículo Diário</Text>
+        {verse && <Text style={{ fontWeight: "bold", color: '#272727', display: 'flex', alignContent: 'center', textAlign: 'center' }}>{verse}</Text>}
+      </View>
     </View>
   );
 }
 
 
-const styles = StyleSheet.create({
-  centralizado: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: "column",
-      gap: 2
-  }
-})
