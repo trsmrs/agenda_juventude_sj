@@ -2,7 +2,11 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from 'expo-router/drawer'
 import { Ionicons } from "@expo/vector-icons";
 
-export default function RootLayout() {
+
+
+export default  function RootLayout() {
+  let a = 'title'
+  
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer screenOptions={{headerShown: true}} >

@@ -1,12 +1,38 @@
-import { DrawerItem } from "@react-navigation/drawer";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import { Calendar, LocaleConfig } from 'react-native-calendars';
+import { Calendar } from 'react-native-calendars';
+
+import { getDataAgenda } from "./utils/actions/get-data";
+import { AgendaProps } from "./utils/actions/agenda.type";
 
 
 export default function Agenda() {
     const [selected, setSelected] = useState('');
+    const [title, setTitle] = useState<any['']>([]);
+    const [datas, setDatas] = useState<any['']>([]);
 
+
+
+    useEffect(() => {
+        async function loadData() {
+            const { objects }: AgendaProps = await getDataAgenda();
+
+          objects.map(r =>{
+              
+            setTitle(r.title)
+            setDatas(r.metadata.data.agenda_data)
+             
+            console.log(r.title)
+            console.log(r.metadata.data.agenda_data)
+
+          })
+            
+
+        //   debug para ver se a data esta sendo clicada,,
+            console.log("DATA SELECIONADA " + selected);
+        }
+        loadData();
+    }, [selected]);
 
     return (
         <View>
@@ -29,16 +55,18 @@ export default function Agenda() {
 
                 onDayPress={(day: { dateString: SetStateAction<string>; }) => {
                     setSelected(day.dateString);
-                    console.log(day.dateString)
+
                 }}
                 markedDates={{
-                    [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: 'orange' }
+                    [selected]: { selected: true, disableTouchEvent: false, selectedDotColor: 'orange' }
                 }}
             />
-            <Text style={{fontSize:20, textAlign:"center"}}>
-                {selected == '2024-07-23' ? 'Micael irá Pregar' : null}
-            </Text>
-
+            {
+                selected === datas ? <Text>{title}</Text> : <Text>Não tem evento</Text>  
+            }
+            {/* <Text style={{ fontSize: 20, textAlign: "center" }}>
+                {title}
+            </Text> */}
         </View>
     )
 }
