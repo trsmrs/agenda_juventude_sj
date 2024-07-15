@@ -32,3 +32,20 @@ export async function getDataAgenda() {
     }
 
 }
+export async function getListaPregadores() {
+    try {
+
+        // const res = await fetch(`https://api.cosmicjs.com/v3/buckets/juventude-sj-production/objects?pretty=true&query=%7B%22type%22:%22agenda%22%7D&limit=10&read_key=abThFzAsgnF1NsI65rMDbjWfeuQ11VVLzQHeqIoY4gv1SfH3P0&depth=1&props=slug,title,metadata,id,`)
+        const res = await fetch(`https://api.cosmicjs.com/v3/buckets/juventude-sj-production/objects?pretty=true&query=%7B%22type%22:%22pregadoreslists%22%7D&limit=10&read_key=abThFzAsgnF1NsI65rMDbjWfeuQ11VVLzQHeqIoY4gv1SfH3P0&depth=1&props=slug,title,metadata,`)
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch data")
+        }
+
+        return res.json();
+
+    } catch (err) {
+        throw new Error("" + err)
+    }
+
+}

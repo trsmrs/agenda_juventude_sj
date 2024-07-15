@@ -3,3 +3,52 @@ https://api.cosmicjs.com/v3/buckets/juventude-sj-production/objects/6692b2c6dd7e
 
 
 
+import React, { useEffect, useState } from "react";
+import { Text, View } from "react-native";
+import { Calendar } from 'react-native-calendars';
+import { getDataAgenda } from "./utils/actions/get-data";
+import { AgendaProps } from "./utils/actions/agenda.type";
+
+export default function Agenda() {
+    const [selected, setSelected] = useState('');
+    const [events, setEvents] = useState([]); // Usaremos um array para armazenar os eventos
+
+    useEffect(() => {
+        async function loadData() {
+            const { objects } = await getDataAgenda();
+
+            // Mapeie os objetos e adicione os eventos ao estado
+            const newEvents = objects.map((r) => ({
+                title: r.title,
+                date: r.metadata.data.agenda_data
+            }));
+
+            setEvents(newEvents);
+        }
+
+        loadData();
+    }, [selected]);
+
+    return (
+        <View>
+            <Calendar
+                // Restante das configurações do calendário...
+
+                onDayPress={(day) => {
+                    setSelected(day.dateString);
+                }}
+                markedDates={{
+                    [selected]: { selected: true, disableTouchEvent: false, selectedDotColor: 'orange' }
+                }}
+            />
+            {events.map((event, index) => (
+                selected === event.date ? (
+                    <Text key={index}>{event.title}</Text>
+                ) : null
+            ))}
+            {selected !== '' && events.every(event => event.date !== selected) && (
+                <Text>Não tem evento</Text>
+            )}
+        </View>
+    );
+}

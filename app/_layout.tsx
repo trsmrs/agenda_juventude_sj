@@ -29,8 +29,8 @@ export default  function RootLayout() {
         <Drawer.Screen
           name="pregador"
           options={{
-            drawerLabel: 'Pregador',
-            title: 'Pregador da Noite',
+            drawerLabel: 'Lista de Pregadores',
+            title: 'Lista de Pregadores',
             drawerIcon: () => <Ionicons name="mic" size={18} color={"#3A98FF"}/>
           }}
           />

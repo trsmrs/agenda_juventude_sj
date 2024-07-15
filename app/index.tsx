@@ -35,7 +35,7 @@ export default function Index() {
 
   return (
     <View style={[styles.centralizado, { gap: 10 }]}>
-      <ImageBackground src={img} style={{ width: "100%", height: "100%" }} />
+      <Text style={{marginTop: '-90%', fontWeight: 'bold', fontSize: 25, textAlign:'center'}}>Jovens e Adolescentes da São Jerônimo</Text>
       <View style={{ alignItems: 'center' }}>
         <Ionicons name="book" size={100} color={'#272727'} />
         <Text style={{ fontWeight: 'bold' }}>Versículo Diário</Text>

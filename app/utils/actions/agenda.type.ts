@@ -6,16 +6,15 @@ export interface AgendaProps {
         metadata: {
             data: {
                 agenda_data: string;
-            }
-            
+            },
+            tittle_event: string;
         }
     }
     ]
 
-    
+
 }
 
 
 
 
-    
